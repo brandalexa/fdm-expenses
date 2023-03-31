@@ -23,3 +23,6 @@ function App() {
 }
 
 export default App;
+
+//TODO: For now the homepage is the login form.
+//TODO: The login/register button doesnt really do anything
