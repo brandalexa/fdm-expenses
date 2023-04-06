@@ -21,6 +21,8 @@ export const Register = (props) => {
           <input
             className="input-logreg"
             value={name}
+            onChange={(e) => setName(e.target.value)}
+            type="text"
             name="name"
             id="name"
             placeholder="Enter your full name"
