@@ -4,6 +4,7 @@ import "./App.css";
 import { Login } from "./Login";
 import { Register } from "./Register";
 import Axios from 'axios';
+import { Claim } from "./Claim";
 
 function App() {
   const [currentForm, setCurrentForm] = useState("login");
@@ -24,13 +25,7 @@ function App() {
   };
 
   return (
-    <><div className="App">
-      {currentForm === "login" ? (
-        <Login onFormSwitch={toggleForm} />
-      ) : (
-        <Register onFormSwitch={toggleForm} />
-      )}
-    </div><button onClick={register}> Register </button></>
+    <Claim />
   );
 }
 
