@@ -5,9 +5,11 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(79deg, #62cdff, #97deff 48%, #c9eeff);
 }
 
+body{
+  background-image: url("https://ecobnb.com/blog/app/uploads/sites/3/2021/09/Progetto-senza-titolo-5.jpg");
+}
 .auth-form-container,
 .login-form,
 .register-form {
@@ -64,4 +66,3 @@
   font-size: 14px;
   color: red;
 }
-
