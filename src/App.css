@@ -5,10 +5,14 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
+
 }
 
 body{
   background-image: url("https://ecobnb.com/blog/app/uploads/sites/3/2021/09/Progetto-senza-titolo-5.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .auth-form-container,
 .login-form,
