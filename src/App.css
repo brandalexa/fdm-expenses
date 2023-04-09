@@ -19,22 +19,21 @@ body{
 .register-form {
   display: flex;
   flex-direction: column;
+  background-color: white;
+
 }
 
 .auth-form-container {
   padding: 5rem;
-  border: 1px solid white;
+  border: 1px solid black;
   border-radius: 10px;
 }
 
-.h2-logreg {
-  color: white;
-}
 
 .label-logreg {
   padding: 0.25em;
   text-align: left;
-  color: white;
+  color: black;
   font-weight: 600;
 }
 
@@ -47,7 +46,7 @@ body{
 
 .login-reg-btn,
 .link-btn {
-  background-color: white;
+  background-color: black;
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
@@ -62,7 +61,7 @@ body{
 
 .link-btn {
   background: none;
-  color: white;
+  color: black;
   border: none;
   text-decoration: underline;
 }
