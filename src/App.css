@@ -5,31 +5,37 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(79deg, #62cdff, #97deff 48%, #c9eeff);
+
 }
 
+body{
+  background-color: #57C586;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
 .auth-form-container,
 .login-form,
 .register-form {
   display: flex;
   flex-direction: column;
+  background-color: white;
+
 }
 
 .auth-form-container {
   padding: 5rem;
-  border: 1px solid white;
+  border: 5px solid black;
   border-radius: 10px;
 }
 
-.h2-logreg {
-  color: white;
-}
 
 .label-logreg {
   padding: 0.25em;
   text-align: left;
-  color: white;
+  color: black;
   font-weight: 600;
+  font-size: larger;
 }
 
 .input-logreg {
@@ -41,7 +47,7 @@
 
 .login-reg-btn,
 .link-btn {
-  background-color: white;
+  background-color: black;
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
@@ -56,7 +62,11 @@
 
 .link-btn {
   background: none;
-  color: white;
+  color: black;
   border: none;
   text-decoration: underline;
+}
+.form-error {
+  font-size: 14px;
+  color: red;
 }
