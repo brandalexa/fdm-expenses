@@ -6,6 +6,8 @@ import { Register } from "./Register";
 import Axios from 'axios';
 import { Claim } from "./Claim";
 
+import SideNav from "./components/sidenav";
+
 function App() {
   const [currentForm, setCurrentForm] = useState("login");
   const [nameReg, setNameReg] = useState("");
@@ -25,7 +27,7 @@ function App() {
   };
 
   return (
-    <Claim />
+    <SideNav/>
   );
 }
 

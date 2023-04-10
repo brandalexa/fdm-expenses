@@ -1,15 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ProSidebarProvider } from "react-pro-sidebar";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    {/* <BrowserRouter> */}
+    <ProSidebarProvider>
+      {/* <Routes>
+        <Route path="/" element={<Sidebar/>}>
+          <Route index element={<Home/>}/>
+          <Route path="claims" element={<ClaimPage/>}/>
+          <Route path="*" element={<NotFound/>}/>
+        </Route>
+      </Routes> */}
+      <App/>
+      </ProSidebarProvider>
+    {/* </BrowserRouter> */}
   </React.StrictMode>
 );
 
