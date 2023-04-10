@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 export const Login = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email);
+    navigate("/Home", { replace: true });
   };
 
   return (
