@@ -8,11 +8,33 @@ export const Register = (props) => {
   const [pass, setPass] = useState("");
   const [formErrors, setFormErrors] = useState({});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
-      console.log(name, email, pass);
+      try {
+        const response = await fetch('http://localhost:8080/register.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username: email, password: pass }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Registration failed');
+        }
+
+        const result = await response.json();
+
+        if (result.success) {
+          console.log('Registration successful');
+        } else if (result.error) {
+          console.error(result.error);
+        }
+      } catch (err) {
+        console.error(err.message);
+      }
     } else {
       setFormErrors(errors);
     }
