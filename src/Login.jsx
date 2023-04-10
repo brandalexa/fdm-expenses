@@ -9,7 +9,7 @@ export const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email);
-    navigate("/Claims", { replace: true });
+    navigate("/Home", { replace: true });
   };
 
   return (
