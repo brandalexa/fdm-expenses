@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, NavLink } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase";
 
 export const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -12,7 +14,19 @@ export const Login = (props) => {
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
       console.log(email, pass);
-      navigate("/Home", { replace: true });
+      signInWithEmailAndPassword(auth, email, pass)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          navigate("/Home", { replace: true });
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+        });
+      //navigate("/Home", { replace: true });
     } else {
       setFormErrors(errors);
     }
@@ -38,7 +52,7 @@ export const Login = (props) => {
       <div className="auth-form-container">
         <h2 className="h2-logreg">Login</h2>
         <form className="login-form" onSubmit={handleSubmit}>
-          <label className="label-logreg" htmlFor="email">
+          <label className="label-logreg" htmlFor="email-address">
             E-mail
           </label>
           <input
@@ -69,7 +83,11 @@ export const Login = (props) => {
           {formErrors.pass && (
             <span className="form-error">{formErrors.pass}</span>
           )}
-          <button className="login-reg-btn" type="submit">
+          <button
+            className="login-reg-btn"
+            type="submit"
+            onClick={handleSubmit}
+          >
             Login
           </button>
         </form>
