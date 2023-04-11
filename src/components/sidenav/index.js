@@ -2,22 +2,28 @@ import React, { useState } from "react";
 import style from "./style.css"
 import { ProSidebarProvider } from "react-pro-sidebar";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from "react-pro-sidebar";
+// import { useTheme, Box, Typography, IconButton, Icon } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import Badge from "../badge";
 
 const SideNav = (props) => {
 
-    const { collapseSidebar, toggleSidebar, broken } = useProSidebar();
+    const { collapseSidebar, toggleSidebar, broken, collapsed } = useProSidebar();
 
     return (
-        <div style={{ display: "flex", height: "100%" }}>
+        <div style={{ display: "flex", height: "100%" }} className="sidebar-container">
             <Sidebar
-                //backgroundColor="#0C2548"
+                backgroundColor="#0C2548"
                 customBreakPoint="768px"
                 transitionDuration={500}
                 >
                 <Menu>
-                    <SubMenu suffix={<Badge value={props.notifications}/>} label={props.name} className="show-notification">
-                        <MenuItem suffix={<Badge value={props.notifications}/>} className="show-notification">Notifications</MenuItem>
+                    <div className="toggle-button">
+                        <h1 suffix="Test">FDM Expenses</h1>
+                        <MenuIcon onClick={collapsed ? toggleSidebar() : collapseSidebar()}/>
+                    </div>
+                    <SubMenu suffix={<Badge value={props.notifications}/>} label={props.name}>
+                        <MenuItem suffix={<Badge value={props.notifications}/>}>Notifications</MenuItem>
                         <MenuItem>My Details</MenuItem>
                         <MenuItem>Change Password</MenuItem>
                     </SubMenu>
@@ -38,11 +44,11 @@ const SideNav = (props) => {
                     </SubMenu>
                 </Menu>
             </Sidebar>
-            <main style={{padding: 10}}>
+            <main style={{ padding: 10 }}>
                 <div>
                     {broken && (
-                        <button className="sb-button" onclick={() => toggleSidebar()}>
-                            Menu
+                        <button className="sb-button" onClick={() => toggleSidebar()}>
+                        Toggle
                         </button>
                     )}
                 </div>

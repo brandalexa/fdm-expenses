@@ -1,1 +1,28 @@
-.show-notification {}
+h1 {
+    color:white;
+}
+
+.sidebar-container {
+    color: white;
+}
+
+.sidebar-container SubMenu {
+    background-color: black;
+}
+
+.toggle-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 2em);
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.toggle-button h1 {
+    white-space: nowrap;
+}
+
+.toggle-button :nth-child(2) {
+    cursor: pointer;
+}

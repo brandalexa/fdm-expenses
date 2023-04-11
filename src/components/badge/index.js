@@ -3,7 +3,7 @@ import style from "./style.css"
 
 const Badge = (props) => {
     return (
-        <div className="container">
+        <div className="badge-container">
             <p className="badge">{props.value}</p>
         </div>
     );
