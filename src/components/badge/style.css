@@ -1,0 +1,12 @@
+.container {
+    min-width: 1.5em;
+    background-color: red;
+    border-radius: 2em;
+}
+
+.badge {
+    padding: 2px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}

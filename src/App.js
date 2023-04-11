@@ -27,7 +27,7 @@ function App() {
   };
 
   return (
-    <SideNav/>
+    <SideNav name="Brandon Alexander" notifications="3"/>
   );
 }
 

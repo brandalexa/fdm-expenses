@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import style from "./style.css"
 import { ProSidebarProvider } from "react-pro-sidebar";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from "react-pro-sidebar";
+import Badge from "../badge";
 
 const SideNav = (props) => {
 
@@ -15,8 +16,8 @@ const SideNav = (props) => {
                 transitionDuration={500}
                 >
                 <Menu>
-                    <SubMenu suffix="2" label="User">
-                        <MenuItem suffix="2">Notifications</MenuItem>
+                    <SubMenu suffix={<Badge value={props.notifications}/>} label={props.name} className="show-notification">
+                        <MenuItem suffix={<Badge value={props.notifications}/>} className="show-notification">Notifications</MenuItem>
                         <MenuItem>My Details</MenuItem>
                         <MenuItem>Change Password</MenuItem>
                     </SubMenu>
