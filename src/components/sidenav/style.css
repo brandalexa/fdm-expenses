@@ -1,9 +1,9 @@
 h1 {
-    color:white;
+    /* color:white; */
 }
 
 .sidebar-container {
-    color: white;
+    /* color: white; */
 }
 
 .sidebar-container SubMenu {
@@ -23,6 +23,18 @@ h1 {
     white-space: nowrap;
 }
 
-.toggle-button :nth-child(2) {
+.toggle-button :nth-child(2), #toggle-sidebar {
     cursor: pointer;
 }
+
+#toggle-sidebar {
+    padding: 1em;
+}
+
+.menu-item {
+    /* background-color: #0C2548; */
+}
+
+/* .menu-item :hover {
+    background-color: yellow;
+} */

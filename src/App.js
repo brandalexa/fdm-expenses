@@ -4,7 +4,8 @@ import "./App.css";
 import { Login } from "./Login";
 import { Register } from "./Register";
 import Axios from 'axios';
-import { Claim } from "./Claim";
+import { Claim } from "./pages/new-claim";
+import Stack from '@mui/material/Stack';
 
 import SideNav from "./components/sidenav";
 
@@ -27,7 +28,10 @@ function App() {
   };
 
   return (
-    <SideNav name="Brandon Alexander" notifications="3"/>
+      <Stack direction="row" spacing={2} id="app-container">
+        <SideNav name="Brandon Alexander" notifications="3"/>
+        <Claim/>
+      </Stack>
   );
 }
 

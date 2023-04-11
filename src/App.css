@@ -65,3 +65,8 @@
   color: red;
 }
 
+#app-container {
+  height: 100%;
+  overflow: hidden;
+  margin-right: 3rem;
+}
