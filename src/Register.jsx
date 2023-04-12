@@ -1,18 +1,34 @@
 import React, { useState } from "react";
-import "./App.css";
-
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase";
 
 export const Register = (props) => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [name, setName] = useState("");
+
+  const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState({});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
       console.log(name, email, pass);
+      await createUserWithEmailAndPassword(auth, email, pass, name)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          navigate("/Login", { replace: true });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+          // ..
+        });
     } else {
       setFormErrors(errors);
     }
@@ -64,7 +80,7 @@ export const Register = (props) => {
             className="input-logreg"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            type="text"
+            type="email"
             placeholder="youremail@gmail.com"
             id="email"
             name="email"
@@ -73,7 +89,9 @@ export const Register = (props) => {
             <span className="form-error">{formErrors.email}</span>
           )}
 
-          <label htmlFor="password">Password</label>
+          <label className="label-logreg" htmlFor="password">
+            Password
+          </label>
           <input
             className="input-logreg"
             value={pass}
@@ -87,7 +105,11 @@ export const Register = (props) => {
             <span className="form-error">{formErrors.pass}</span>
           )}
 
-          <button className="login-reg-btn" type="submit">
+          <button
+            className="login-reg-btn"
+            type="submit"
+            onClick={handleSubmit}
+          >
             Register
           </button>
         </form>
