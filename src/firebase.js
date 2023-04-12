@@ -55,4 +55,29 @@ const db = getDatabase();
 export const claimRef = ref(db, "claims");
 
 export const auth = getAuth(app);
+
+// Returns a list of claims made by the user logged in
+export const getClaims = () => {
+  if (!auth.currentUser) return [];  // Not logged in
+  const uid = auth.currentUser.uid;
+  const claims = [];
+
+  get(claimRef).then((snapshot) => {
+    if (snapshot.exists()) {
+        const snap = snapshot.val();
+        for (let key in snap) {
+            if (snap[key].User === uid) {  // SHOULD BE === (!== USED TO TEST)
+              claims.push(snap[key]);
+            }
+        }
+    } else {
+        console.log("No data available");
+    }
+  }).catch((error) => {
+      console.error(error);
+  });
+
+  return claims;
+}
+
 export default app;

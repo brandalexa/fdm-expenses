@@ -7,6 +7,8 @@ import { Login } from "./Login";
 import Home from "./Home";
 import { Register } from "./Register";
 import { Claim } from "./Claim";
+import { SentClaims } from "./SentClaims";
+import { UnsentClaims } from "./UnsentClaims";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,6 +20,8 @@ root.render(
         <Route path="register" element={<Register />} />
         <Route path="home" element={<Home />} />
         <Route path="claim" element={<Claim />} />
+        <Route path="unsent" element={<UnsentClaims />} />
+        <Route path="sent" element={<SentClaims />} />
       </Routes>
     </BrowserRouter>
     {/* <App /> */}
