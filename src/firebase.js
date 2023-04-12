@@ -7,6 +7,24 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
+import {
+  getStorage,
+  ref as sRef,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
+
+import {
+  getDatabase,
+  ref,
+  get,
+  set,
+  child,
+  update,
+  remove,
+  push,
+  onValue,
+} from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,6 +45,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+const storage = getStorage();
+export const storageRef = sRef(storage, "evidence");
+
+const db = getDatabase();
+
+// Get a reference to the "Claim" folder in your Firebase Realtime Database
+export const claimRef = ref(db, "claims");
 
 export const auth = getAuth(app);
 export default app;
