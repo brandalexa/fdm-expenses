@@ -7,6 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Badge from "../badge";
 import { useMediaQuery } from "@mui/material";
 
+
 const SideNav = (props) => {
 
     const { collapseSidebar, toggleSidebar, broken, collapsed,  } = useProSidebar();
@@ -30,10 +31,14 @@ const SideNav = (props) => {
         },
     };
 
+    const menuStyles = {
+        submenuBgColor: "#007fff",
+    };
+
     return (
         <div style={{ display: "flex", height: "100%" }} className="sidebar-container">
             <Sidebar
-                // backgroundColor="#0C2548"
+                backgroundColor="#ececec"
                 customBreakPoint="768px"
                 transitionDuration={500}
                 >
@@ -42,8 +47,8 @@ const SideNav = (props) => {
                     <div className="toggle-button">
                         <h1 suffix="Test">FDM Expenses</h1>
                     </div>
-                    <SubMenu suffix={<Badge value={props.notifications}/>} label={props.name}>
-                        <MenuItem className="menu-item" suffix={<Badge value={props.notifications}/>}>Notifications</MenuItem>
+                    <SubMenu className="menu-item" suffix={<Badge value={props.notifications}/>} label={props.name}>
+                        <MenuItem suffix={<Badge value={props.notifications}/>}>Notifications</MenuItem>
                         <MenuItem>My Details</MenuItem>
                         <MenuItem>Change Password</MenuItem>
                     </SubMenu>

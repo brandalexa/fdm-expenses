@@ -6,9 +6,9 @@ h1 {
     /* color: white; */
 }
 
-.sidebar-container SubMenu {
+/* .sidebar-container SubMenu {
     background-color: black;
-}
+} */
 
 .toggle-button {
     display: flex;
@@ -31,10 +31,18 @@ h1 {
     padding: 1em;
 }
 
-.menu-item {
-    /* background-color: #0C2548; */
+/* .menu-item {
+    background-color: #0C2548;
 }
 
-/* .menu-item :hover {
+.menu-item :hover {
     background-color: yellow;
+} */
+
+/* .ps-submenu-root {
+    background-color: #;
+}
+
+.ps-submenu-content :hover{
+    background-color: #113d7b;
 } */

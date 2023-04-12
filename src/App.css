@@ -68,5 +68,9 @@
 #app-container {
   height: 100%;
   overflow: hidden;
-  margin-right: 3rem;
+  margin-right: 5rem;
+}
+
+#app-container :nth-child(2) {
+  overflow: scroll;
 }
