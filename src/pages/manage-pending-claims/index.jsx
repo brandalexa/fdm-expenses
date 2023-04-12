@@ -3,9 +3,9 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 
 const ViewUnsentClaims = () => {
   const claims = [ // Boilerplate - will be replaced with JSON from DB
-    { title: "User 1", description: "Joe Max", amount: "£420", date: "2015-07-01" },
-    { title: "User 2", description: "Bingfan Xu", amount: "£500", date: "2015-02-03" },
-    { title: "User 3", description: "Hex Lenin", amount: "£3000", date: "2015-05-07" },
+    { title: "Claim 1", description: "Description 1", amount: "£42.99", date: "2022-04-01" },
+    { title: "Claim 2", description: "Description 2", amount: "£100.00", date: "2022-04-02" },
+    { title: "Claim 3", description: "Description 3", amount: "£17.99", date: "2022-04-03" },
   ];
 
   const handleClick = (title) => {
