@@ -13,7 +13,7 @@ const ViewUnsentClaims = () => {
         <h1>History Claim</h1>
       <Table sx={{ minWidth: 650 }} aria-label="Claims table">
         <TableHead>
-          <h1>Bingfan </h1> 
+          <h1>Brandon Alexander </h1> 
           <div>Nationality:Chinese</div>
           <div>Adress: Via Appia 234</div>
           <div>Telephone number:+44 7570834572</div>
