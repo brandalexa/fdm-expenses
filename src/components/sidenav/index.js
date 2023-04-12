@@ -7,6 +7,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Badge from "../badge";
 import { useMediaQuery } from "@mui/material";
 
+import { Link } from "react-router-dom";
+
 
 const SideNav = (props) => {
 
@@ -48,23 +50,22 @@ const SideNav = (props) => {
                         <h1 suffix="Test">FDM Expenses</h1>
                     </div>
                     <SubMenu className="menu-item" suffix={<Badge value={props.notifications}/>} label={props.name}>
-                        <MenuItem suffix={<Badge value={props.notifications}/>}>Notifications</MenuItem>
-                        <MenuItem>My Details</MenuItem>
-                        <MenuItem>Change Password</MenuItem>
+                        <MenuItem component={<Link to="/notifications" />}suffix={<Badge value={props.notifications}/>}>Notifications</MenuItem>
+                        <MenuItem component={<Link to={`/my-details`} />}>My Details</MenuItem>
+                        <MenuItem component={<Link to={`/change-password`} />}>Change Password</MenuItem>
                     </SubMenu>
                     <SubMenu label="Claim">
-                        <MenuItem>View Claims</MenuItem>
-                        <MenuItem>Create Claim</MenuItem>
-                        <MenuItem>Sent Claims</MenuItem>
+                        <MenuItem component={<Link to={`/view-claim`} />}>View Claims</MenuItem>
+                        <MenuItem component={<Link to={`/new-claim`} />}>Create Claim</MenuItem>
                     </SubMenu>
                     <SubMenu label="Manage">
                         <SubMenu label="Claims">
-                            <MenuItem>Pending Claims</MenuItem>
-                            <MenuItem>Closed Claims</MenuItem>
+                            <MenuItem component={<Link to={`/manage-pending-claims`} />}>Pending Claims</MenuItem>
+                            <MenuItem component={<Link to={`/view-closed-claims`} />}>Closed Claims</MenuItem>
                         </SubMenu>
                         <SubMenu label="User">
-                            <MenuItem>New User</MenuItem>
-                            <MenuItem>Manage User</MenuItem>
+                            <MenuItem component={<Link to={`/new-user`} />}>New User</MenuItem>
+                            <MenuItem component={<Link to={`/manage-user`} />}>Manage User</MenuItem>
                         </SubMenu>
                     </SubMenu>
                 </Menu>
