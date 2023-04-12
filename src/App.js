@@ -3,12 +3,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Login } from "./Login";
 import { Register } from "./Register";
-import Axios from 'axios';
+import Axios from "axios";
 import { Claim } from "./pages/new-claim";
-import Stack from '@mui/material/Stack';
+import Stack from "@mui/material/Stack";
 
 import SideNav from "./components/sidenav";
-import Notifications from "./pages/notifications"
+import Notifications from "./pages/notifications";
 import ViewUnsentClaims from "./pages/view-claims";
 
 function App() {
@@ -18,8 +18,10 @@ function App() {
   const [passwordReg, setPasswordReg] = useState("");
 
   const register = () => {
-    Axios.post('http://localhost3001/register',
-    {name: nameReg, email: emailReg, password: passwordReg,
+    Axios.post("http://localhost3001/register", {
+      name: nameReg,
+      email: emailReg,
+      password: passwordReg,
     }).then((response) => {
       console.log(response);
     });
@@ -30,10 +32,10 @@ function App() {
   };
 
   return (
-      <Stack direction="row" spacing={2} id="app-container">
-        <SideNav name="Brandon Alexander" notifications="3"/>
-        <ViewUnsentClaims/>
-      </Stack>
+    <Stack direction="row" spacing={2} id="app-container">
+      <SideNav name="Brandon Alexander" notifications="3" />
+      <ViewUnsentClaims />
+    </Stack>
   );
 }
 
