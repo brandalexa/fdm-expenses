@@ -8,6 +8,8 @@ import { Claim } from "./pages/new-claim";
 import Stack from '@mui/material/Stack';
 
 import SideNav from "./components/sidenav";
+import Notifications from "./pages/notifications"
+import ViewUnsentClaims from "./pages/view-claims";
 
 function App() {
   const [currentForm, setCurrentForm] = useState("login");
@@ -30,7 +32,7 @@ function App() {
   return (
       <Stack direction="row" spacing={2} id="app-container">
         <SideNav name="Brandon Alexander" notifications="3"/>
-        <Claim/>
+        <ViewUnsentClaims/>
       </Stack>
   );
 }
