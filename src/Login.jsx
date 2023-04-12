@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import "./App.css";
+import { Routes, Route, useNavigate, NavLink } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase";
 
 export const Login = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState({});
 
   const handleSubmit = (e) => {
@@ -11,6 +14,19 @@ export const Login = (props) => {
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
       console.log(email, pass);
+      signInWithEmailAndPassword(auth, email, pass)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          navigate("/Home", { replace: true });
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+        });
+      //navigate("/Home", { replace: true });
     } else {
       setFormErrors(errors);
     }
@@ -34,16 +50,16 @@ export const Login = (props) => {
   return (
     <>
       <div className="auth-form-container">
-        <h2 className="h2-logreg">Log In</h2>
+        <h2 className="h2-logreg">Login</h2>
         <form className="login-form" onSubmit={handleSubmit}>
-          <label className="label-logreg" htmlFor="email">
+          <label className="label-logreg" htmlFor="email-address">
             E-mail
           </label>
           <input
             className="input-logreg"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            type="text"
+            type="email"
             placeholder="youremail@gmail.com"
             id="email"
             name="email"
@@ -52,7 +68,9 @@ export const Login = (props) => {
             <span className="form-error">{formErrors.email}</span>
           )}
 
-          <label htmlFor="password">Password</label>
+          <label className="label-logreg" htmlFor="password">
+            Password
+          </label>
           <input
             className="input-logreg"
             value={pass}
@@ -65,9 +83,12 @@ export const Login = (props) => {
           {formErrors.pass && (
             <span className="form-error">{formErrors.pass}</span>
           )}
-
-          <button className="login-reg-btn" type="submit">
-            Log In
+          <button
+            className="login-reg-btn"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Login
           </button>
         </form>
         <button
