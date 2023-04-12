@@ -3,9 +3,9 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 
 const ViewUnsentClaims = () => {
   const claims = [ // Boilerplate - will be replaced with JSON from DB
-    { title: "Claim 1", description: "Description 1", amount: "£42.99", date: "2022-04-01" },
-    { title: "Claim 2", description: "Description 2", amount: "£100.00", date: "2022-04-02" },
-    { title: "Claim 3", description: "Description 3", amount: "£17.99", date: "2022-04-03" },
+    { title: "User 1", description: "Joe Max", amount: "£420", date: "2015-07-01" },
+    { title: "User 2", description: "Bingfan Xu", amount: "£500", date: "2015-02-03" },
+    { title: "User 3", description: "Hex Lenin", amount: "£3000", date: "2015-05-07" },
   ];
 
   const handleClick = (title) => {
@@ -18,10 +18,10 @@ const ViewUnsentClaims = () => {
       <Table sx={{ minWidth: 650 }} aria-label="Claims table">
         <TableHead>
           <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Amount</TableCell>
-            <TableCell>Date</TableCell>
+            <TableCell>User number</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Total amount request</TableCell>
+            <TableCell>Joined Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
