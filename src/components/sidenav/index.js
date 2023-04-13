@@ -32,6 +32,10 @@ const SideNav = (props) => {
             },
         },
     };
+    
+    const resetPassword = () => {
+        alert("Change password email sent.");
+    }
 
     const menuStyles = {
         submenuBgColor: "#007fff",
@@ -52,7 +56,7 @@ const SideNav = (props) => {
                     <SubMenu className="menu-item" suffix={<Badge value={props.notifications}/>} label={props.name}>
                         <MenuItem component={<Link to="/notifications" />}suffix={<Badge value={props.notifications}/>}>Notifications</MenuItem>
                         <MenuItem component={<Link to={`/my-details`} />}>My Details</MenuItem>
-                        <MenuItem component={<Link to={`/change-password`} />}>Change Password</MenuItem>
+                        <MenuItem onClick={resetPassword}>Change Password</MenuItem>
                     </SubMenu>
                     <SubMenu label="Claim">
                         <MenuItem component={<Link to={`/view-claim`} />}>View Claims</MenuItem>

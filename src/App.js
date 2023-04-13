@@ -59,14 +59,14 @@ function App() {
             </Stack>
           }
         />
-        <Route path="change-password"
+        {/* <Route path="change-password"
           element={            
             <Stack direction="row" spacing={2} id="app-container">
                 <SideNav name="Brandon Alexander" notifications="4"/>
                 <ChangePassword/>
             </Stack>
           }
-        />
+        /> */}
         <Route path="view-claim"
           element={            
             <Stack direction="row" spacing={2} id="app-container">

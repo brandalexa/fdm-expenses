@@ -1,19 +1,32 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ResetPassword from "./pages/change-password/ResetPassword";
+import React, { useState } from "react";
+import { sendPasswordResetEmail, getAuth } from "@firebase/auth";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route index element={<App />} />
-        <Route path="resetpassword" element={<ResetPassword />} />
-      </Routes>
-    </BrowserRouter>
-    {/* <App /> */}
-  </React.StrictMode>
-);
+function ChangePassword() {
+  const [email, setEmail] = useState("");
+  const auth = getAuth();
+
+  const triggerResetEmail = async () => {
+    await sendPasswordResetEmail(auth, email);
+    console.log("Password reset email sent");
+  };
+  return (
+    <div className="resetPassword-main">
+      <label className="label-logreg" htmlFor="email-address">
+        E-mail
+      </label>
+      <input
+        className="input-logreg"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        type="email"
+        placeholder="youremail@gmail.com"
+        id="email"
+        name="email"
+      />
+      <button className="resetBtn" type="button" onClick={triggerResetEmail}>
+        Reset password
+      </button>
+    </div>
+  );
+}
+export default ChangePassword;
