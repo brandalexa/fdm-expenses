@@ -54,6 +54,9 @@ const db = getDatabase();
 // Get a reference to the "Claim" folder in your Firebase Realtime Database
 export const claimRef = ref(db, "claims");
 
+// Get a reference to the "User" folder in your Firebase Realtime Database
+const userRef = ref(db, "user");
+
 export const auth = getAuth(app);
 
 // Returns a list of claims made by the user logged in
@@ -67,7 +70,7 @@ export const getClaims = () => {
         const snap = snapshot.val();
         for (let key in snap) {
             if (snap[key].User === uid) {  // SHOULD BE === (!== USED TO TEST)
-              claims.push(snap[key]);
+              claims.push({key: snap[key]});
             }
         }
     } else {
@@ -75,6 +78,46 @@ export const getClaims = () => {
     }
   }).catch((error) => {
       console.error(error);
+  });
+
+  return claims;
+}
+
+// Returns a list of claims made by everyone EXCEPT the user (role=manager) logged in
+export const getEmployeeClaims = () => {
+  if (!auth.currentUser) return [];  // Not logged in
+
+  const uid = auth.currentUser.uid;
+  const claims = [];
+
+  get(userRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const userSnap = snapshot.val();
+      const userDetails = userSnap[uid];
+      const role = userDetails.role;
+      if (role === "manager") {
+        get(claimRef).then((snapshot) => {
+          if (snapshot.exists()) {
+              const snap = snapshot.val();
+              for (let key in snap) {
+                  if (snap[key].User !== uid) {  // SHOULD BE !== (gets all claims EXCEPT the manager that is logged in)
+                    claims.push({key: snap[key]});
+                  }
+              }
+          } else {
+              console.log("No data available");
+          }
+        }).catch((error) => {
+            console.error(error);
+        });
+      } else {
+        console.log("Not a manager");
+      }
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
   });
 
   return claims;

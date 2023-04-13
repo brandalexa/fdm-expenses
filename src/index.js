@@ -9,6 +9,7 @@ import { Register } from "./Register";
 import { Claim } from "./Claim";
 import { SentClaims } from "./SentClaims";
 import { UnsentClaims } from "./UnsentClaims";
+import { ManageClaims } from "./ManageClaims";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,6 +23,7 @@ root.render(
         <Route path="claim" element={<Claim />} />
         <Route path="unsent" element={<UnsentClaims />} />
         <Route path="sent" element={<SentClaims />} />
+        <Route path="manage" element={<ManageClaims />} />
       </Routes>
     </BrowserRouter>
     {/* <App /> */}

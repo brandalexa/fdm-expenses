@@ -12,7 +12,7 @@ export const SentClaims = (props) => {
   function updateClaims() {
     const claims = getClaims();
     claims.filter((claim) => {
-      return claim.Sent === true;
+      return claim[Object.keys(claim)[0]].Sent === true;
     });
     console.log(claims);
     setSentClaims(claims);
