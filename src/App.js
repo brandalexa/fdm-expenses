@@ -46,7 +46,7 @@ function App() {
         <Route path="notifications" 
           element={            
             <Stack direction="row" spacing={2} id="app-container">
-                <SideNav name="Brandon Alexander" notifications="4"/>
+                <SideNav name="Jon Dennis" notifications="1"/>
                 <Notifications/>
             </Stack>
           }
@@ -54,7 +54,7 @@ function App() {
         <Route path="my-details"
           element={            
             <Stack direction="row" spacing={2} id="app-container">
-                <SideNav name="Brandon Alexander" notifications="4"/>
+                <SideNav name="Jon Dennis" notifications="1"/>
                 <MyDetails/>
             </Stack>
           }
@@ -70,7 +70,7 @@ function App() {
         <Route path="view-claim"
           element={            
             <Stack direction="row" spacing={2} id="app-container">
-                <SideNav name="Brandon Alexander" notifications="4"/>
+                <SideNav name="Jon Dennis" notifications="1"/>
                 <ViewUnsentClaims/>
             </Stack>
           }
@@ -78,7 +78,7 @@ function App() {
         <Route path="new-claim" 
           element={
             <Stack direction="row" spacing={2} id="app-container">
-              <SideNav name="Brandon Alexander" notifications="4"/>
+              <SideNav name="Jon Dennis" notifications="1"/>
               <Claim/>
             </Stack>
           }
@@ -86,7 +86,7 @@ function App() {
         <Route path="manage-pending-claims"
           element={            
             <Stack direction="row" spacing={2} id="app-container">
-                <SideNav name="Brandon Alexander" notifications="4"/>
+                <SideNav name="Jon Dennis" notifications="1"/>
                 <ManageClaims/>
             </Stack>
           }
@@ -94,7 +94,7 @@ function App() {
         <Route path="view-closed-claims"
           element={            
             <Stack direction="row" spacing={2} id="app-container">
-                <SideNav name="Brandon Alexander" notifications="4"/>
+                <SideNav name="Jon Dennis" notifications="1"/>
                 <ViewClosedClaims/>
             </Stack>
           }
@@ -102,7 +102,7 @@ function App() {
         <Route path="new-user"
           element={            
             <Stack direction="row" spacing={2} id="app-container">
-                <SideNav name="Brandon Alexander" notifications="4"/>
+                <SideNav name="Brandon Alexander" notifications=""/>
                 <NewUser/>
             </Stack>
           }
@@ -110,7 +110,7 @@ function App() {
         <Route path="manage-user"
           element={            
             <Stack direction="row" spacing={2} id="app-container">
-                <SideNav name="Brandon Alexander" notifications="4"/>
+                <SideNav name="Brandon Alexander" notifications=""/>
                 <ManageUser/>
             </Stack>
           }
@@ -118,7 +118,7 @@ function App() {
         <Route path="*"
           element={            
             <Stack direction="row" spacing={2} id="app-container">
-                <SideNav name="Brandon Alexander" notifications="4"/>
+                <SideNav name="Brandon Alexander" notifications=""/>
                 <Notifications/>
                 {/* Create 404 page */}
             </Stack>

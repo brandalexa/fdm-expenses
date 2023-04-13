@@ -1,4 +1,5 @@
 import React from "react";
+import Button from '@mui/material/Button';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 const ViewUnsentClaims = () => {
@@ -9,20 +10,24 @@ const ViewUnsentClaims = () => {
 
 
   return (
-    <TableContainer component={Paper}>
-        <h1>History Claim</h1>
-      <Table sx={{ minWidth: 650 }} aria-label="Claims table">
-        <TableHead>
-          <h1>Brandon Alexander </h1> 
-          <div>Nationality:Chinese</div>
-          <div>Adress: Via Appia 234</div>
-          <div>Telephone number:+44 7570834572</div>
-        </TableHead>
-        <TableBody>
+    <div className="form-container">
+      <h1>My Details</h1>
+      <form>
 
-        </TableBody>
-      </Table>
-    </TableContainer>
+        <label for="title">Name</label>
+        <input type="text" id="title" name="title" value="Jon Dennis" />
+
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" value="jondennis@fdm.com" />
+
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role" value="employee" />
+
+        <div id="form-buttons">
+          <Button variant="contained" color="success" type="submit" className="form-button">Change</Button>
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -30,7 +30,7 @@ const ViewUnsentClaims = () => {
         <input type="text" id="email" name="email"  />
 
         <label for="role">Role</label>
-        <input type="text" id="role" name="role"  />
+        <input type="text" id="role" name="role" value="employee" />
 
         <div id="form-buttons">
           <Button variant="contained" color="success" type="submit" className="form-button">Submit</Button>

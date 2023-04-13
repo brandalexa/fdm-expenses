@@ -1,15 +1,17 @@
 import React from 'react';
+import { redirect } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { List, ListItem, ListItemText, Typography } from '@mui/material';
 
 const Notifications = (props) => {
   const items = [
-    { id: 1, title: 'Item 1', description: 'Description for Item 1' },
-    { id: 2, title: 'Item 2', description: 'Description for Item 2' },
-    { id: 3, title: 'Item 3', description: 'Description for Item 3' },
+    { id: 1, title: ' "Expensive Meal" Claim Denied', description: 'Your reimbursement claim "Expensive Meal" has been denied.' },
   ];
 
-  const handleClick = (id) => {
-    console.log(`Item ${id} clicked`);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/view-claims');
   };
 
   return (
@@ -22,7 +24,7 @@ const Notifications = (props) => {
           <ListItem
             key={item.id}
             button
-            onClick={() => handleClick(item.id)}
+            onClick={() => handleClick}
             style={{ marginBottom: 10 }}
           >
             <ListItemText primary={item.title} secondary={item.description} />

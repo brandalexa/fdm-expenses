@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, isVisible, setIsVisible } from "react";
 import { getEmployeeClaims } from "../../firebase";
+import Button from '@mui/material/Button';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 const ViewUnsentClaims = () => {
+
+  const [isVisible, setIsVisible] = useState(false);
+
+
   const oldClaims = [ // Boilerplate - will be replaced with JSON from DB
     { title: "User 1", description: "Joe Max", amount: "£420", date: "2015-07-01" },
     { title: "User 2", description: "Bingfan Xu", amount: "£500", date: "2015-02-03" },
@@ -34,10 +39,11 @@ const ViewUnsentClaims = () => {
   const claims = employeeClaims;
 
   const handleClick = (title) => {
-    alert(title); // Will link to relevant claim
+    setIsVisible(true);
   };
 
   return (
+    <>
     <TableContainer component={Paper}>
         <h1>Pending Claims</h1>
       <Table sx={{ minWidth: 650 }} aria-label="Claims table">
@@ -67,6 +73,16 @@ const ViewUnsentClaims = () => {
         </TableBody>
       </Table>
     </TableContainer>
+    {isVisible && (
+    <form>
+            <div id="form-buttons">
+            <Button variant="contained" color="success" type="submit" className="form-button">Approve</Button>
+            <Button variant="contained" color="error" className="form-button">Deny</Button>
+          </div>
+          </form>
+    )
+}
+</>
   );
 };
 

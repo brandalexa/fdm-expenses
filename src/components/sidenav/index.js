@@ -62,7 +62,7 @@ const SideNav = (props) => {
                         <MenuItem component={<Link to={`/view-claim`} />}>View Claims</MenuItem>
                         <MenuItem component={<Link to={`/new-claim`} />}>Create Claim</MenuItem>
                     </SubMenu>
-                    <SubMenu label="Manage">
+                    {/* <SubMenu label="Manage">
                         <SubMenu label="Claims">
                             <MenuItem component={<Link to={`/manage-pending-claims`} />}>Pending Claims</MenuItem>
                             <MenuItem component={<Link to={`/view-closed-claims`} />}>Closed Claims</MenuItem>
@@ -71,7 +71,7 @@ const SideNav = (props) => {
                             <MenuItem component={<Link to={`/new-user`} />}>New User</MenuItem>
                             <MenuItem component={<Link to={`/manage-user`} />}>Manage User</MenuItem>
                         </SubMenu>
-                    </SubMenu>
+                    </SubMenu> */}
                 </Menu>
             </Sidebar>
             <main style={{ padding: 10 }}>

@@ -16,7 +16,7 @@ const ViewUnsentClaims = () => {
     let claims = await getEmployeeClaims();
     // Ensures that all claims to be managed have been submitted and not yet resolved
     claims = claims.filter((claim) => {
-      return claim[Object.keys(claim)[0]].Sent === true && claim[Object.keys(claim)[0]].Resolved === true;
+      return claim[Object.keys(claim)[0]].Sent === true && claim[Object.keys(claim)[0]].Resolved === true && claim[Object.keys(claim)[0]].Approved === false;
     });
     console.log(claims);
     setEmployeeClaims(claims);
@@ -47,6 +47,7 @@ const ViewUnsentClaims = () => {
             <TableCell>Description</TableCell>
             <TableCell>Amount</TableCell>
             <TableCell>Date</TableCell>
+            <TableCell>Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -62,6 +63,8 @@ const ViewUnsentClaims = () => {
               <TableCell>{claim[Object.keys(claim)[0]].Description}</TableCell>
               <TableCell>{"£" + claim[Object.keys(claim)[0]].Amount}</TableCell>
               <TableCell>{claim[Object.keys(claim)[0]].Date}</TableCell>
+              <TableCell>{claim[Object.keys(claim)[0]].Approved ? "Approved" : "Denied"}</TableCell>
+
             </TableRow>
           ))}
         </TableBody>
