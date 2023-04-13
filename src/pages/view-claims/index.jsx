@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { getClaims } from "../../firebase";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
-const ViewUnsentClaims = () => {
-  const claims = [ // Boilerplate - will be replaced with JSON from DB
-    { title: "Claim 1", description: "Description 1", amount: "£42.99", date: "2022-04-01" },
-    { title: "Claim 2", description: "Description 2", amount: "£100.00", date: "2022-04-02" },
-    { title: "Claim 3", description: "Description 3", amount: "£17.99", date: "2022-04-03" },
-  ];
+const ViewUnsentClaims = (props) => {
+
+    // List of claim objects where Sent != true;
+    const [unsentClaims, setUnsentClaims] = useState([]);
+
+    function updateClaims() {
+      const claims = getClaims();
+      claims.filter((claim) => {
+        return claim[Object.keys(claim)[0]].Sent === false;
+      });
+      console.log(claims);
+      setUnsentClaims(claims);
+    }
+  
+    useEffect(() => {
+      updateClaims();
+    }, []);
+
+  const claims = unsentClaims;
 
   const handleClick = (title) => {
     alert(title); // Will link to relevant claim
@@ -32,11 +47,11 @@ const ViewUnsentClaims = () => {
               sx={{ "&:hover": { cursor: "pointer" } }}
             >
               <TableCell component="th" scope="row">
-                {claim.title}
+                {claim.Title}
               </TableCell>
-              <TableCell>{claim.description}</TableCell>
-              <TableCell>{claim.amount}</TableCell>
-              <TableCell>{claim.date}</TableCell>
+              <TableCell>{claim.Description}</TableCell>
+              <TableCell>{claim.Amount}</TableCell>
+              <TableCell>{claim.Date}</TableCell>
             </TableRow>
           ))}
         </TableBody>
