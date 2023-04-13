@@ -3,7 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { getEmployeeClaims } from "./firebase";
 
 
-export const UnsentClaims = (props) => {
+export const ManageClaims = (props) => {
   const navigate = useNavigate();
 
   // List of claim objects where Sent != true;
