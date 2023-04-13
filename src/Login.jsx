@@ -18,7 +18,7 @@ export const Login = (props) => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/Home", { replace: true });
+          navigate("view-claims", { replace: true });
           console.log(user);
         })
         .catch((error) => {

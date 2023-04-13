@@ -42,7 +42,7 @@ function App() {
   return (
     <Routes>
         <Route path="/" element={<SideNav/>}/>
-        <Route index element={<Claim/>}/>
+        <Route index element={<Login/>}/>
         <Route path="notifications" 
           element={            
             <Stack direction="row" spacing={2} id="app-container">
