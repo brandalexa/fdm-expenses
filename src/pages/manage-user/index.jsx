@@ -1,27 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+
+import Button from '@mui/material/Button';
+import { isVisible } from "@testing-library/user-event/dist/utils";
+
 
 const ViewUnsentClaims = () => {
   const claims = [ // Boilerplate - will be replaced with JSON from DB
-    { title: "User 1", description: "Joe Max", amount: "£420", date: "2015-07-01" },
-    { title: "User 2", description: "Bingfan Xu", amount: "£500", date: "2015-02-03" },
-    { title: "User 3", description: "Hex Lenin", amount: "£3000", date: "2015-05-07" },
+    { title: "Brandon Alexander", description: "brandonalexander@fdm.com", role: "admin"},
+    { title: "Lavanya Stuti", description: "lavanyastuti@fdm.com", role: "manager"},
+    { title: "Jonathan Dennis", description: "jondennis@fdm.com", role: "employee"},
   ];
 
+   const [isVisible, setIsVisible] = useState(false);
+
   const handleClick = (title) => {
-    alert(title); // Will link to relevant claim
+    setIsVisible(true);
   };
 
   return (
+    <>
     <TableContainer component={Paper}>
-        <h1>Unsent Claims</h1>
+        <h1>Users</h1>
       <Table sx={{ minWidth: 650 }} aria-label="Claims table">
         <TableHead>
           <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Amount</TableCell>
-            <TableCell>Date</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Role</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -35,13 +41,36 @@ const ViewUnsentClaims = () => {
                 {claim.title}
               </TableCell>
               <TableCell>{claim.description}</TableCell>
-              <TableCell>{claim.amount}</TableCell>
-              <TableCell>{claim.date}</TableCell>
+              <TableCell>{claim.role}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+
+  <div className="form-container">
+  <h1>Manage User</h1>
+  {isVisible && (
+  <form>
+
+    <label for="title">Name</label>
+    <input type="text" id="title" name="title"  value="Jonathan Dennis"/>
+
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" value="jondennis@fdm.com" />
+
+    <label for="role">Role</label>
+    <input type="text" id="role" name="role" value="employee" />
+
+    <div id="form-buttons">
+      <Button variant="contained" color="success" type="submit" className="form-button">Submit</Button>
+      <Button variant="contained" color="error" className="form-button">Discard</Button>
+    </div>
+  </form>
+  )
+}
+  </div>
+  </>
   );
 };
 

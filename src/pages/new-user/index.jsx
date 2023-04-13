@@ -1,6 +1,12 @@
 import React from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
+import style from "./style.css";
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Stack from '@mui/material/Stack';
+
 const ViewUnsentClaims = () => {
   const claims = [ // Boilerplate - will be replaced with JSON from DB
     { title: "User 1", description: "Joe Max", amount: "£420", date: "2015-07-01" },
@@ -13,35 +19,25 @@ const ViewUnsentClaims = () => {
   };
 
   return (
-    <TableContainer component={Paper}>
-        <h1>Unsent Claims</h1>
-      <Table sx={{ minWidth: 650 }} aria-label="Claims table">
-        <TableHead>
-          <TableRow>
-            <TableCell>User number</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Total amount request</TableCell>
-            <TableCell>Joined Date</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {claims.map((claim) => (
-            <TableRow
-              key={claim.title}
-              onClick={() => handleClick(claim.title)}
-              sx={{ "&:hover": { cursor: "pointer" } }}
-            >
-              <TableCell component="th" scope="row">
-                {claim.title}
-              </TableCell>
-              <TableCell>{claim.description}</TableCell>
-              <TableCell>{claim.amount}</TableCell>
-              <TableCell>{claim.date}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className="form-container">
+      <h1>New User</h1>
+      <form>
+
+        <label for="title">Name</label>
+        <input type="text" id="title" name="title"  />
+
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email"  />
+
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role"  />
+
+        <div id="form-buttons">
+          <Button variant="contained" color="success" type="submit" className="form-button">Submit</Button>
+          <Button variant="contained" color="error" className="form-button">Discard</Button>
+        </div>
+      </form>
+    </div>
   );
 };
 
