@@ -8,12 +8,10 @@ const ViewUnsentClaims = (props) => {
     // List of claim objects where Sent != true;
     const [unsentClaims, setUnsentClaims] = useState([]);
 
-    function updateClaims() {
-      const claims = getClaims();
-      claims.filter((claim) => {
-        return claim[Object.keys(claim)[0]].Sent === false;
-      });
+    async function updateClaims() {
+      const claims = await getClaims();
       console.log(claims);
+      //console.log(Object.keys(claims[0]));
       setUnsentClaims(claims);
     }
   
@@ -29,7 +27,7 @@ const ViewUnsentClaims = (props) => {
 
   return (
     <TableContainer component={Paper}>
-        <h1>Unsent Claims</h1>
+        <h1>My Claims</h1>
       <Table sx={{ minWidth: 650 }} aria-label="Claims table">
         <TableHead>
           <TableRow>
@@ -37,21 +35,23 @@ const ViewUnsentClaims = (props) => {
             <TableCell>Description</TableCell>
             <TableCell>Amount</TableCell>
             <TableCell>Date</TableCell>
+            <TableCell>Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {claims.map((claim) => (
             <TableRow
-              key={claim.title}
-              onClick={() => handleClick(claim.title)}
+              key={Object.keys(claim)[0]}
+              onClick={() => handleClick(claim[Object.keys(claim)[0]].Title)}
               sx={{ "&:hover": { cursor: "pointer" } }}
             >
               <TableCell component="th" scope="row">
-                {claim.Title}
+                {claim[Object.keys(claim)[0]].Title}
               </TableCell>
-              <TableCell>{claim.Description}</TableCell>
-              <TableCell>{claim.Amount}</TableCell>
-              <TableCell>{claim.Date}</TableCell>
+              <TableCell>{claim[Object.keys(claim)[0]].Description}</TableCell>
+              <TableCell>{"£" + claim[Object.keys(claim)[0]].Amount}</TableCell>
+              <TableCell>{claim[Object.keys(claim)[0]].Date}</TableCell>
+              <TableCell>{claim[Object.keys(claim)[0]].Sent === true ? "Submitted" : "Draft"}</TableCell>
             </TableRow>
           ))}
         </TableBody>

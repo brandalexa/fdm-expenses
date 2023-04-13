@@ -75,11 +75,11 @@ export const Claim = (props) => {
 
     //Firebase Sent Claim
     const input = document.querySelector("input");
-    const reciept = expense.file;
+    const reciept = file;
 
-    console.log("Image File = " + input.files[0].name);
+    console.log("Image File = " + reciept.name);
 
-    const fileName = auth.currentUser.uid +'/'+input.files[0].name;
+    const fileName = auth.currentUser.uid +'/'+reciept.name;
     //const fileName = Math.random().toString(36).substring(2) + Date.now().toString() + '.' + input.files[0].name.split('.').pop()
     // const metadata = {
     //   contentType: reciept.type
@@ -146,9 +146,9 @@ export const Claim = (props) => {
     var description = expenseData.description;
 
     const input = document.querySelector("input");
-    const reciept = input.files[0];
+    const reciept = file;
 
-    const fileName = auth.currentUser.uid +'/'+Math.random().toString(36).substring(2)+'/'+input.files[0].name;
+    const fileName = auth.currentUser.uid +'/'+Math.random().toString(36).substring(2)+'/'+reciept.name;
     // const metadata = {
     //   contentType: reciept.type
     // };

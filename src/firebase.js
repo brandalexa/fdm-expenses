@@ -60,17 +60,46 @@ const userRef = ref(db, "user");
 export const auth = getAuth(app);
 
 // Returns a list of claims made by the user logged in
-export const getClaims = () => {
+export const getClaims = async () => {
   if (!auth.currentUser) return [];  // Not logged in
   const uid = auth.currentUser.uid;
   const claims = [];
 
-  get(claimRef).then((snapshot) => {
+  await get(claimRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const snap = snapshot.val();
+      for (let key in snap) {
+          if (snap[key].User === uid) {  // SHOULD BE === (!== USED TO TEST)
+            let obj = {};
+            obj[key] = snap[key];
+            claims.push(obj);
+          }
+      }
+      
+    } else {
+        console.log("No data available");
+    }
+  }).catch((error) => {
+      console.error(error);
+  });
+  return claims;
+}
+
+// Returns a list of claims made by everyone EXCEPT the user (role=manager) logged in
+export const getEmployeeClaims = async () => {
+  if (!auth.currentUser) return [];  // Not logged in
+
+  const uid = auth.currentUser.uid;
+  const claims = [];
+
+  await get(claimRef).then((snapshot) => {
     if (snapshot.exists()) {
         const snap = snapshot.val();
         for (let key in snap) {
-            if (snap[key].User === uid) {  // SHOULD BE === (!== USED TO TEST)
-              claims.push({key: snap[key]});
+            if (snap[key].User !== uid) {  // SHOULD BE !== (gets all claims EXCEPT the manager that is logged in)
+              let obj = {};
+              obj[key] = snap[key];
+              claims.push(obj);
             }
         }
     } else {
@@ -78,46 +107,6 @@ export const getClaims = () => {
     }
   }).catch((error) => {
       console.error(error);
-  });
-
-  return claims;
-}
-
-// Returns a list of claims made by everyone EXCEPT the user (role=manager) logged in
-export const getEmployeeClaims = () => {
-  if (!auth.currentUser) return [];  // Not logged in
-
-  const uid = auth.currentUser.uid;
-  const claims = [];
-
-  get(userRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      const userSnap = snapshot.val();
-      const userDetails = userSnap[uid];
-      const role = userDetails.role;
-      if (role === "manager") {
-        get(claimRef).then((snapshot) => {
-          if (snapshot.exists()) {
-              const snap = snapshot.val();
-              for (let key in snap) {
-                  if (snap[key].User !== uid) {  // SHOULD BE !== (gets all claims EXCEPT the manager that is logged in)
-                    claims.push({key: snap[key]});
-                  }
-              }
-          } else {
-              console.log("No data available");
-          }
-        }).catch((error) => {
-            console.error(error);
-        });
-      } else {
-        console.log("Not a manager");
-      }
-    } else {
-      console.log("No data available");
-    }
-  }).catch((error) => {
-    console.error(error);
   });
 
   return claims;

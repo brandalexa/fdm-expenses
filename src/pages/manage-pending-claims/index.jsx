@@ -1,12 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getEmployeeClaims } from "../../firebase";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 const ViewUnsentClaims = () => {
-  const claims = [ // Boilerplate - will be replaced with JSON from DB
-    { title: "Claim 1", description: "Description 1", amount: "£42.99", date: "2022-04-01" },
-    { title: "Claim 2", description: "Description 2", amount: "£100.00", date: "2022-04-02" },
-    { title: "Claim 3", description: "Description 3", amount: "£17.99", date: "2022-04-03" },
+  const oldClaims = [ // Boilerplate - will be replaced with JSON from DB
+    { title: "User 1", description: "Joe Max", amount: "£420", date: "2015-07-01" },
+    { title: "User 2", description: "Bingfan Xu", amount: "£500", date: "2015-02-03" },
+    { title: "User 3", description: "Hex Lenin", amount: "£3000", date: "2015-05-07" },
   ];
+
+  // List of claim objects where Sent != true;
+  const [employeeClaims, setEmployeeClaims] = useState([]);
+
+  async function updateClaims() {
+    let claims = await getEmployeeClaims();
+    // Ensures that all claims to be managed have been submitted and not yet resolved
+    claims = claims.filter((claim) => {
+        return claim[Object.keys(claim)[0]].Sent === true && claim[Object.keys(claim)[0]].Resolved === false;
+      });
+    console.log(claims);
+    setEmployeeClaims(claims);
+  }
+
+  // Approves/Rejects a claim and resolves it
+  function approveClaim(claimID, isApproved) {
+
+  }
+
+  useEffect(() => {
+    updateClaims();
+  }, []);
+
+  const claims = employeeClaims;
 
   const handleClick = (title) => {
     alert(title); // Will link to relevant claim
@@ -14,7 +39,7 @@ const ViewUnsentClaims = () => {
 
   return (
     <TableContainer component={Paper}>
-        <h1>Unsent Claims</h1>
+        <h1>Pending Claims</h1>
       <Table sx={{ minWidth: 650 }} aria-label="Claims table">
         <TableHead>
           <TableRow>
@@ -27,16 +52,16 @@ const ViewUnsentClaims = () => {
         <TableBody>
           {claims.map((claim) => (
             <TableRow
-              key={claim.title}
-              onClick={() => handleClick(claim.title)}
+              key={Object.keys(claim)[0]}
+              onClick={() => handleClick(claim[Object.keys(claim)[0]].Title)}
               sx={{ "&:hover": { cursor: "pointer" } }}
             >
               <TableCell component="th" scope="row">
-                {claim.title}
+                {claim[Object.keys(claim)[0]].Title}
               </TableCell>
-              <TableCell>{claim.description}</TableCell>
-              <TableCell>{claim.amount}</TableCell>
-              <TableCell>{claim.date}</TableCell>
+              <TableCell>{claim[Object.keys(claim)[0]].Description}</TableCell>
+              <TableCell>{"£" + claim[Object.keys(claim)[0]].Amount}</TableCell>
+              <TableCell>{claim[Object.keys(claim)[0]].Date}</TableCell>
             </TableRow>
           ))}
         </TableBody>
