@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { storageRef, claimRef } from "./firebase";
+import { storageRef, claimRef } from "firebase";
 import {
   getStorage,
   ref as sRef,
@@ -221,4 +221,4 @@ export const Claim = (props) => {
 
 
 
-//export default Claim;
+export default Claim;

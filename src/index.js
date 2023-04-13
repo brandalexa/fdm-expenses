@@ -22,7 +22,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <BrowserRouter>
     <ProSidebarProvider>
-      <App name="Brandon Alexander" notifications="4"/>
+      <App />
     </ProSidebarProvider>
     </BrowserRouter>
 );
